@@ -1,17 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-
 <div class="app-content">
   <div class="title">
     <h1>Find Your Horrorscope</h1>
   </div>
-  <app-sign-picker (onSelection)="newSelection($event)">
-  </app-sign-picker>
-  <app-horrorscope-display class="display-container" [fate]="horrorscope" [loading]="loading">
+  <app-sign-picker (onSelection)="newSelection($event)"> </app-sign-picker>
+  <app-horrorscope-display
+    class="display-container"
+    [fate]="horrorscope"
+    [loading]="loading"
+  >
   </app-horrorscope-display>
-  <div *ngIf="resultsArrived">
-    <app-submit-fate (submission)="onSubmit($event)">
-    </app-submit-fate>
+  <div *ngIf="resultsArrived && showSubmitForm()">
+    <app-submit-fate (submission)="onSubmit($event)"> </app-submit-fate>
   </div>
 </div>
 
