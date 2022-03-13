@@ -1,0 +1,28 @@
+on:
+  push:
+    tags:
+      - "*"
+
+env:
+  NODE_VERSION: "14.x"
+
+jobs:
+  build-and-deploy-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Github Action"
+        uses: actions/checkout@master
+
+      - name: "Install dependencies"
+        run: npm i
+
+      - name: "Build app"
+        run: npm b --prod --aot
+
+      - name: "Deploy to engine app"
+        id: deploy-app
+        uses: google-github-actions/deploy-appengine@v0.1.0
+        with:
+          project: ${{ secrets.GCP_PROJECT }}
+          deliverables: app.yaml
+          credentials: ${{ secrets.GCP_CREDENTIALS }}
