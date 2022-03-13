@@ -36,6 +36,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Mobile Build
 
+Reference steps: https://medium.com/@christof.thalmann/convert-angular-project-to-android-apk-in-10-steps-c49e2fddd29
+
 ## Build
 
 Run `ng build --prod --aot` to build the project. Then run `cordova build android` to create the apk file.
