@@ -26,10 +26,10 @@ jobs:
       - name: "Build app"
         run: npm b --prod --aot
 
-      - name: "Deploy to engine app"
-        id: deploy-app
-        uses: google-github-actions/deploy-appengine@v0.1.0
-        with:
-          project: ${{ secrets.GCP_PROJECT }}
-          deliverables: app.yaml
-          credentials: ${{ secrets.GCP_CREDENTIALS }}
+      # - name: "Deploy to engine app"
+      #   id: deploy-app
+      #   uses: google-github-actions/deploy-appengine@v0.1.0
+      #   with:
+      #     project: ${{ secrets.GCP_PROJECT }}
+      #     deliverables: app.yaml
+      #     credentials: ${{ secrets.GCP_CREDENTIALS }}
