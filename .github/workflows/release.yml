@@ -1,7 +1,9 @@
-on:
-  push:
-    tags:
-      - "*"
+#on:
+#  push:
+#    tags:
+#      - "*"
+
+on: ["pull_request"]
 
 env:
   NODE_VERSION: "14.x"
