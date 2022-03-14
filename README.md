@@ -34,22 +34,22 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-### Mobile Build
+## Mobile Build
 
 Reference steps: https://medium.com/@christof.thalmann/convert-angular-project-to-android-apk-in-10-steps-c49e2fddd29
 
-## Build
+### Build
 
 Run `ng build --prod --aot` to build the project. Then run `cordova build android` to create the apk file.
 
-## Release Build
+### Release Build
 
 Run `cordova build --release android` this will create an unsigned .aab file of the apk.
 
-## Self Sign APK
+### Self Sign APK
 
 Run `keytool -genkey -v -keystore horrorscope.keystore -alias horroscope -keyalg RSA -keysize 2048 -validity 10000` to self sign the apk file.
 
-## Sign Java Archive Package
+### Sign Java Archive Package
 
 Run `jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore horrorscope.keystore pathToAPKFile/app-release.aab horroscope` to sign the Java Archive Package.
