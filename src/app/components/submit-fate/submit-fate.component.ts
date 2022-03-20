@@ -95,15 +95,4 @@ export class SubmitFateComponent implements OnInit {
   public onShowForm() {
     this.showForm = true;
   }
-
-  public onAbout(): void {
-    const dialogRef = this.aboutDialog.open(AboutDialog);
-  }
 }
-
-@Component({
-  selector: "about-dialog",
-  template:
-    "<p>This application is powered by some of the most well known psychics in the modern era.</p><br/><p>Just kidding, it's all randomly picked</p>",
-})
-export class AboutDialog {}

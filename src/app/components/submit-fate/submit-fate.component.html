@@ -1,16 +1,12 @@
-<div class="about-submit">
-  <button
+<div class="submit-button">
+  <!-- <button
     [@fadeInOut]
     class="show-form"
     (click)="onAbout()"
     mat-button>
     <mat-icon>sort</mat-icon>
-  </button>
-  <button
-    [@fadeInOut]
-    class="show-form"
-    mat-button
-    (click)="onShowForm()">
+  </button> -->
+  <button [@fadeInOut] class="show-form" mat-button (click)="onShowForm()">
     <mat-icon>add</mat-icon>
   </button>
 </div>
@@ -22,22 +18,17 @@
       autocomplete="off"
       #textInput
       [placeholder]="'Fate'"
-      [formControl]="fateFormControl">
-      </textarea>
+      [formControl]="fateFormControl"
+    >
+    </textarea>
   </mat-form-field>
-  <mat-form-field
-    class="sign-select-field"
-    #signSelect>
-    <mat-label>
-      Select a Sign
-    </mat-label>
-    <mat-select
-      [formControl]="signFormControl"
-      multiple>
-    <mat-option *ngFor="let sign of signs" [value]="sign">
-      {{ sign }}
-    </mat-option>
-  </mat-select>
+  <mat-form-field class="sign-select-field" #signSelect>
+    <mat-label> Select a Sign </mat-label>
+    <mat-select [formControl]="signFormControl" multiple>
+      <mat-option *ngFor="let sign of signs" [value]="sign">
+        {{ sign }}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field class="mandatory-second-field" style="display: none">
     <input
@@ -45,14 +36,17 @@
       autocomplete="off"
       #secondInput
       [placeholder]="'Fate'"
-      [formControl]="secondFormControl">
+      [formControl]="secondFormControl"
+    />
   </mat-form-field>
-  <button class="g-recaptcha"
+  <button
+    class="g-recaptcha"
     data-sitekey="6LdXYgAVAAAAACz4Ls8ROtkAKUdK-RVXbs3TTszt"
-    data-callback='onSubmit'
-    data-action='submit'
+    data-callback="onSubmit"
+    data-action="submit"
     mat-button
-    (click)="onEnter()">
-      <mat-icon>check</mat-icon>
+    (click)="onEnter()"
+  >
+    <mat-icon>check</mat-icon>
   </button>
 </form>

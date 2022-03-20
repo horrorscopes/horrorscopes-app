@@ -1,8 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
+import {
+  FormGroupDirective,
+  FormsModule,
+  NgForm,
+  ReactiveFormsModule,
+} from "@angular/forms";
 import {
   MatButtonModule,
   MatDialogModule,
@@ -10,22 +15,23 @@ import {
   MatInputModule,
   MatIconModule,
   MatSelectModule,
-} from '@angular/material';
+} from "@angular/material";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { SignPickerComponent } from './components/sign-picker/sign-picker.component';
-import { SubmitFateComponent, AboutDialog } from './components/submit-fate/submit-fate.component';
-import { HorrorscopeDisplayComponent } from './components/horrorscope-display/horrorscope-display.component';
-import { ApiService } from './services/api.service';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { SignPickerComponent } from "./components/sign-picker/sign-picker.component";
+import { SubmitFateComponent } from "./components/submit-fate/submit-fate.component";
+import { HorrorscopeDisplayComponent } from "./components/horrorscope-display/horrorscope-display.component";
+import { ApiService } from "./services/api.service";
+import { AboutComponent } from "./components/about/about.component";
+import { AboutDialog } from "./components/about-dialog/about-dialog.component";
 
 @NgModule({
-  entryComponents: [
-    AboutDialog,
-  ],
+  entryComponents: [AboutDialog],
   declarations: [
     AppComponent,
     AboutDialog,
+    AboutComponent,
     HorrorscopeDisplayComponent,
     SignPickerComponent,
     SubmitFateComponent,
@@ -45,6 +51,6 @@ import { ApiService } from './services/api.service';
     ReactiveFormsModule,
   ],
   providers: [ApiService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
