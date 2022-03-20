@@ -1,5 +1,9 @@
 .title {
   text-align: center;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .app-content {
