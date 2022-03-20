@@ -36,17 +36,24 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Mobile Build
 
-Reference steps: https://medium.com/@christof.thalmann/convert-angular-project-to-android-apk-in-10-steps-c49e2fddd29
+Reference steps: https://www.youtube.com/watch?v=V2Wn2JROUEo
 
 ### Build
 
-Run `ng build --prod --aot` to build the project. Then run `cordova build android` to create the apk file.
+Run `ng build --prod --aot` to build the project. 
 
-### Release Build
+Run `npx cap open android` to run in Android Studio.
 
-Run `cordova build --release android` this will create an unsigned .aab file of the apk.
+In Android Studio click Build => Build Bundle(s) / APKs => Build APK(s), this will create an APK for testing.
+
+### Apply changes
+
+To apply changes to the android project run `npx cap sync android`, then re-build in Android Studio.
 
 ### Self Sign APK
+
+In Android Studio click Build => Generate Signed Bundle(s) / APKs, this will create a signed APK for testing. However, we will need to use the scripts below in the CI 
+scripts to automatically build and deploy.
 
 Run `keytool -genkey -v -keystore horrorscope.keystore -alias horroscope -keyalg RSA -keysize 2048 -validity 10000` to self sign the apk file.
 
