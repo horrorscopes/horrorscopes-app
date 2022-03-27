@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { last } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -13,7 +12,7 @@ export class OnceADayService {
     if (dateString == undefined || dateString == null) {
       return true;
     } else {
-      return this._hasBeenLessThan24h(dateString);
+      return this._hasBeenADay(dateString);
     }
   }
 
@@ -22,7 +21,7 @@ export class OnceADayService {
     if (dateString == undefined || dateString == null) {
       return true;
     } else {
-      return this._hasBeenLessThan24h(dateString);
+      return this._hasBeenADay(dateString);
     }
   }
 
@@ -36,9 +35,14 @@ export class OnceADayService {
     localStorage.setItem(this.postTimestampKey, now);
   }
 
-  private _hasBeenLessThan24h(date: string): boolean {
-    let lastRead = new Date(date).getTime();
-    let now = new Date().getTime();
-    return (now - lastRead) / 3600 / 1000 > 24;
+  private _hasBeenADay(date: string): boolean {
+    const lastReadDate = new Date(date);
+    const today = new Date();
+    let lastRead =
+      lastReadDate.getFullYear() +
+      lastReadDate.getMonth() +
+      lastReadDate.getDate();
+    let now = today.getFullYear() + today.getMonth() + today.getDate();
+    return now != lastRead;
   }
 }

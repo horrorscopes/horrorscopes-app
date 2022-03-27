@@ -3,6 +3,7 @@
 <div class="app-content">
   <div class="title">
     <h1>Find Your Horrorscope</h1>
+    <about></about>
   </div>
   <app-sign-picker (onSelection)="newSelection($event)"> </app-sign-picker>
   <app-horrorscope-display
@@ -11,7 +12,7 @@
     [loading]="loading"
   >
   </app-horrorscope-display>
-  <div *ngIf="resultsArrived && showSubmitForm()">
+  <div *ngIf="resultsArrived || showSubmitForm()">
     <app-submit-fate (submission)="onSubmit($event)"> </app-submit-fate>
   </div>
 </div>

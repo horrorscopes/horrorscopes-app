@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit } from "@angular/core";
 import { debounceTime, delay } from "rxjs/operators";
 
 import { ApiService } from "./services/api.service";
+import { FateCacheService } from "./services/fate-cache.service";
 import { OnceADayService } from "./services/once-a-day.service";
 
 @Component({
@@ -17,10 +18,17 @@ export class AppComponent implements OnInit {
 
   constructor(
     private _apiService: ApiService,
-    private _onceADayService: OnceADayService
+    private _onceADayService: OnceADayService,
+    private _fateCacheService: FateCacheService
   ) {}
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    let cachedHorrorscope = this._fateCacheService.getCachedFate();
+    if (cachedHorrorscope != null && cachedHorrorscope != "") {
+      this.horrorscope = cachedHorrorscope;
+      this.resultsArrived = true;
+    }
+  }
 
   public newSelection(sign: string): void {
     if (!this._onceADayService.canReadNewHorror()) {
@@ -37,6 +45,7 @@ export class AppComponent implements OnInit {
         this.resultsArrived = true;
         this.loading = false;
         this._onceADayService.setHorrorReadTime();
+        this._fateCacheService.setCachedFate(this.horrorscope);
       });
   }
 
