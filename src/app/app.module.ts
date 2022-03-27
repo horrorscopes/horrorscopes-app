@@ -25,14 +25,18 @@ import { HorrorscopeDisplayComponent } from "./components/horrorscope-display/ho
 import { ApiService } from "./services/api.service";
 import { AboutComponent } from "./components/about/about.component";
 import { AboutDialog } from "./components/about-dialog/about-dialog.component";
+import { ReportButtonComponent } from "./components/report-button/report-button.component";
+import { ConfirmDialogComponent } from "./components/confirmation-dialog/confirmation-dialog.component";
 
 @NgModule({
-  entryComponents: [AboutDialog],
+  entryComponents: [AboutDialog, ConfirmDialogComponent],
   declarations: [
     AppComponent,
     AboutDialog,
     AboutComponent,
+    ConfirmDialogComponent,
     HorrorscopeDisplayComponent,
+    ReportButtonComponent,
     SignPickerComponent,
     SubmitFateComponent,
   ],

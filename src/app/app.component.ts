@@ -54,7 +54,6 @@ export class AppComponent implements OnInit {
       return;
     }
     this._apiService.putData(submission).subscribe((x) => {
-      console.dir(x);
       this._onceADayService.setHorrorPostTime();
     });
   }
