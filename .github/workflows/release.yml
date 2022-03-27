@@ -32,7 +32,6 @@ jobs:
         with:
           java-version: "1.8"
       - name: "Build with Gradle"
-        uses: build
         run: ./gradlew build
       - name: "Build Release AAB"
         id: buildRelease
