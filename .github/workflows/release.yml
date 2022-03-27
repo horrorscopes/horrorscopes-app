@@ -35,8 +35,8 @@ jobs:
         run: |
           cd android
           chmod +x build.gradle
-          gradlew build
-          gradlew bundleRelease
+          ./gradlew build
+          ./gradlew bundleRelease
       - name: "Sign AAB"
         id: sign
         uses: r0adkll/sign-android-release@v1
