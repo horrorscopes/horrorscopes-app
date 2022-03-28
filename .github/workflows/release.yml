@@ -74,4 +74,3 @@ jobs:
           packageName: com.horrorscope.app
           releaseFile: android/app/build/outputs/bundle/release/app-release.aab
           track: production
-          whatsNewDirectory: distribution/whatsnew
