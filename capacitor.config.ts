@@ -5,6 +5,9 @@ const config: CapacitorConfig = {
   appName: "horrorscope",
   webDir: "dist/horrorscope",
   bundledWebRuntime: false,
+  server: {
+    allowNavigation: ["*"],
+  },
 };
 
 export default config;
