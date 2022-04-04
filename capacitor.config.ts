@@ -6,8 +6,7 @@ const config: CapacitorConfig = {
   webDir: "dist/horrorscope",
   bundledWebRuntime: false,
   server: {
-    allowNavigation: ["*"],
-    androidScheme: "https",
+    hostname: "https://127.0.0.1",
   },
 };
 

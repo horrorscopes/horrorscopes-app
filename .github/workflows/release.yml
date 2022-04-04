@@ -73,5 +73,5 @@ jobs:
           serviceAccountJson: service_account.json
           packageName: com.horrorscope.app
           releaseFile: android/app/build/outputs/bundle/release/app-release.aab
-          track: internal
+          track: production
           status: completed
