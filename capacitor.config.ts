@@ -5,6 +5,9 @@ const config: CapacitorConfig = {
   appName: "My Horrorscopes",
   webDir: "dist/horrorscope",
   bundledWebRuntime: false,
+  server: {
+    cleartext: true,
+  },
 };
 
 export default config;
