@@ -2,5 +2,11 @@
 	"appId": "com.horrorscope.app",
 	"appName": "horrorscope",
 	"webDir": "dist/horrorscope",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"server": {
+		"allowNavigation": [
+			"*"
+		],
+		"androidScheme": "https"
+	}
 }
