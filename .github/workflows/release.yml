@@ -32,35 +32,29 @@ jobs:
           credentials: ${{ secrets.GCP_APPENGINE_SERVICE_KEY }}
           deliverables: app.yaml
 
-      - name: "set up Java"
-        uses: actions/setup-java@v1
-        with:
-          java-version: "15.0.2"
+      - name: Capacitor update
+        run: npx cap update
 
-      - name: "Build with Gradle"
+      - name: Capacitor copy
+        run: npx cap copy
+
+      - name: Build app bundle
+        run: cd android && gradle bundle
+
+      - name: Extract Android signing key from env
         run: |
-          cd android
-          chmod +x build.gradle
-          chmod +x gradlew
-          ./gradlew build
-          ./gradlew bundleRelease
+          echo "${{ secrets.EDUARDOS_KEYSTORE }}" > android/release.jks.base64
+          base64 -d android/release.jks.base64 > android/release.decrypted.jks
 
-      - name: "Sign AAB"
-        id: sign
-        uses: r0adkll/sign-android-release@v1
-        with:
-          releaseDirectory: android/app/build/outputs/bundle/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Sign dev build
+        run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
 
-      - name: Upload AAB
-        id: uploadArtifact
-        uses: actions/upload-artifact@v1
+      - name: Upload release bundle
+        uses: actions/upload-artifact@v2
         with:
-          name: app
-          path: android/app/build/outputs/bundle/release/app-release.aab
+          name: app-release
+          path: android/app/build/outputs/bundle/release/app-release-signed.aab
+          retention-days: 60
 
       - name: Create service_account.json
         id: createServiceAccount
@@ -72,6 +66,6 @@ jobs:
         with:
           serviceAccountJson: service_account.json
           packageName: com.horrorscope.app
-          releaseFile: android/app/build/outputs/bundle/release/app-release.aab
+          releaseFile: android/app/build/outputs/bundle/release/app-release-signed.aab
           track: production
           status: completed
