@@ -43,11 +43,11 @@ jobs:
 
       - name: Extract Android signing key from env
         run: |
-          echo "${{ secrets.EDUARDOS_KEYSTORE }}" > android/release.jks.base64
+          echo "${{ secrets.SIGNING_KEY }}" > android/release.jks.base64
           base64 -d android/release.jks.base64 > android/release.decrypted.jks
 
       - name: Sign dev build
-        run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.EDUARDOS_KEYSTORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
+        run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.KEY_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
 
       - name: Upload release bundle
         uses: actions/upload-artifact@v2
