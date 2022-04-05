@@ -49,7 +49,7 @@ jobs:
       # - name: Sign dev build
       #   run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.KEY_STORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
 
-    - name: "Sign AAB"
+      - name: "Sign AAB"
         id: sign
         uses: r0adkll/sign-android-release@v1
         with:
