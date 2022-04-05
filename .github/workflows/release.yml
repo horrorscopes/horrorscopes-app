@@ -46,8 +46,18 @@ jobs:
           echo "${{ secrets.SIGNING_KEY }}" > android/release.jks.base64
           base64 -d android/release.jks.base64 > android/release.decrypted.jks
 
-      - name: Sign dev build
-        run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.KEY_STORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
+      # - name: Sign dev build
+      #   run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.KEY_STORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
+
+    - name: "Sign AAB"
+        id: sign
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: android/app/build/outputs/bundle/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Upload release bundle
         uses: actions/upload-artifact@v2
