@@ -1,4 +1,7 @@
-on: [pull_request]
+on:
+  push:
+    tags:
+      - "*"
 
 env:
   NODE_VERSION: "14.x"
@@ -24,14 +27,6 @@ jobs:
       - name: "Build app"
         run: npm run build --prod --aot
 
-      # - name: "Deploy to engine app"
-      #   id: deploy-app
-      #   uses: google-github-actions/deploy-appengine@v0.2.0
-      #   with:
-      #     project: ${{ secrets.GCP_PROJECT }}
-      #     credentials: ${{ secrets.GCP_APPENGINE_SERVICE_KEY }}
-      #     deliverables: app.yaml
-
       - name: Capacitor update
         run: npx cap update
 
@@ -45,9 +40,6 @@ jobs:
         run: |
           echo "${{ secrets.SIGNING_KEY }}" > android/release.jks.base64
           base64 -d android/release.jks.base64 > android/release.decrypted.jks
-
-      # - name: Sign dev build
-      #   run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.KEY_STORE_PASSWORD }}" -signedjar ./android/app/build/outputs/bundle/release/app-release-signed.aab ./android/app/build/outputs/bundle/release/app-release.aab release
 
       - name: "Sign AAB"
         id: sign
