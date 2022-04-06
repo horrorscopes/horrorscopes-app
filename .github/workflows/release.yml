@@ -1,4 +1,7 @@
-on: [pull_request]
+on:
+  push:
+    tags:
+      - "*"
 
 env:
   NODE_VERSION: "14.x"
@@ -24,26 +27,19 @@ jobs:
       - name: "Build app"
         run: npm run build --prod --aot
 
-      - name: "Deploy to engine app"
-        id: deploy-app
-        uses: google-github-actions/deploy-appengine@v0.2.0
-        with:
-          project: ${{ secrets.GCP_PROJECT }}
-          credentials: ${{ secrets.GCP_APPENGINE_SERVICE_KEY }}
-          deliverables: app.yaml
+      - name: Capacitor update
+        run: npx cap update
 
-      - name: "set up Java"
-        uses: actions/setup-java@v1
-        with:
-          java-version: "15.0.2"
+      - name: Capacitor copy
+        run: npx cap copy
 
-      - name: "Build with Gradle"
+      - name: Build app bundle
+        run: cd android && gradle bundle
+
+      - name: Extract Android signing key from env
         run: |
-          cd android
-          chmod +x build.gradle
-          chmod +x gradlew
-          ./gradlew build
-          ./gradlew bundleRelease
+          echo "${{ secrets.SIGNING_KEY }}" > android/release.jks.base64
+          base64 -d android/release.jks.base64 > android/release.decrypted.jks
 
       - name: "Sign AAB"
         id: sign
@@ -55,12 +51,12 @@ jobs:
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
-      - name: Upload AAB
-        id: uploadArtifact
-        uses: actions/upload-artifact@v1
+      - name: Upload release bundle
+        uses: actions/upload-artifact@v2
         with:
-          name: app
+          name: app-release
           path: android/app/build/outputs/bundle/release/app-release.aab
+          retention-days: 60
 
       - name: Create service_account.json
         id: createServiceAccount
