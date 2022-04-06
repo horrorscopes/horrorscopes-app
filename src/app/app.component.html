@@ -6,12 +6,16 @@
     <about></about>
   </div>
   <app-sign-picker (onSelection)="newSelection($event)"> </app-sign-picker>
-  <app-horrorscope-display
-    class="display-container"
-    [fate]="horrorscope"
-    [loading]="loading"
-  >
-  </app-horrorscope-display>
+  <div class="title">
+    <app-horrorscope-display
+      class="display-container"
+      [fate]="horrorscope"
+      [loading]="loading"
+    >
+    </app-horrorscope-display>
+    <report-button [fate]="horrorscope"></report-button>
+  </div>
+
   <div *ngIf="resultsArrived || showSubmitForm()">
     <app-submit-fate (submission)="onSubmit($event)"> </app-submit-fate>
   </div>

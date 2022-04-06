@@ -22,7 +22,22 @@ export class ApiService {
     const headers: HttpHeaders = new HttpHeaders().set(
       "Content-Type",
       "application/json"
-    ); //.set('Access-Control-Allow-Origin', '*');
+    );
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+      }),
+    };
+    return this._http.post<any>(url, submission, httpOptions);
+  }
+
+  public reportData(submission): Observable<any> {
+    const url: string =
+      "https://us-central1-my-horrorscopes.cloudfunctions.net/report-data";
+    const headers: HttpHeaders = new HttpHeaders().set(
+      "Content-Type",
+      "application/json"
+    );
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
