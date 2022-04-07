@@ -15,18 +15,59 @@ jobs:
     steps:
       - name: "Checkout Github Action"
         uses: actions/checkout@master
+
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
+
       - name: "Install dependencies"
         run: npm i
+
       - name: "Build app"
         run: npm run build --prod --aot
-      - name: "Deploy to engine app"
-        id: deploy-app
-        uses: google-github-actions/deploy-appengine@v0.2.0
+
+      - name: Capacitor update
+        run: npx cap update
+
+      - name: Capacitor copy
+        run: npx cap copy
+
+      - name: Build app bundle
+        run: cd android && gradle bundle
+
+      - name: Extract Android signing key from env
+        run: |
+          echo "${{ secrets.SIGNING_KEY }}" > android/release.jks.base64
+          base64 -d android/release.jks.base64 > android/release.decrypted.jks
+
+      - name: "Sign AAB"
+        id: sign
+        uses: r0adkll/sign-android-release@v1
         with:
-          project: ${{ secrets.GCP_PROJECT }}
-          credentials: ${{ secrets.GCP_APPENGINE_SERVICE_KEY }}
-          deliverables: app.yaml
+          releaseDirectory: android/app/build/outputs/bundle/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Upload release bundle
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release
+          path: android/app/build/outputs/bundle/release/app-release.aab
+          retention-days: 60
+
+      - name: Create service_account.json
+        id: createServiceAccount
+        run: echo '${{ secrets.PLAY_STORE_DEPLOYMENT_KEY }}' > service_account.json
+
+      - name: Deploy to Play Store
+        id: deploy
+        uses: r0adkll/upload-google-play@v1.0.15
+        with:
+          serviceAccountJson: service_account.json
+          packageName: com.horrorscope.app
+          releaseFile: android/app/build/outputs/bundle/release/app-release.aab
+          track: production
+          status: completed

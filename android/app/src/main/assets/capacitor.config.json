@@ -1,0 +1,9 @@
+{
+	"appId": "com.horrorscope.app",
+	"appName": "My Horrorscopes",
+	"webDir": "dist/horrorscope",
+	"bundledWebRuntime": false,
+	"server": {
+		"cleartext": true
+	}
+}
