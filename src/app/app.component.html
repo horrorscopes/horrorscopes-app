@@ -13,7 +13,7 @@
       [loading]="loading"
     >
     </app-horrorscope-display>
-    <report-button [fate]="horrorscope"></report-button>
+    <report-button *ngIf="resultsArrived" [fate]="horrorscope"></report-button>
   </div>
 
   <div *ngIf="resultsArrived || showSubmitForm()">
