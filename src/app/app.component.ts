@@ -23,15 +23,20 @@ export class AppComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    let cachedHorrorscope = this._fateCacheService.getCachedFate();
-    if (cachedHorrorscope != null && cachedHorrorscope != "") {
-      this.horrorscope = cachedHorrorscope;
-      this.resultsArrived = true;
-    }
+    // let cachedHorrorscope = this._fateCacheService.getCachedFate();
+    // if (cachedHorrorscope != null && cachedHorrorscope != "") {
+    //   this.horrorscope = cachedHorrorscope;
+    //   this.resultsArrived = true;
+    // }
   }
 
   public newSelection(sign: string): void {
-    if (!this._onceADayService.canReadNewHorror()) {
+    if (!this._onceADayService.canReadNewHorror(sign)) {
+      let cachedHorrorscope = this._fateCacheService.getCachedFate(sign);
+      if (cachedHorrorscope != null && cachedHorrorscope != "") {
+        this.horrorscope = cachedHorrorscope;
+        this.resultsArrived = true;
+      }
       return;
     }
     this.horrorscope = undefined;
@@ -44,8 +49,8 @@ export class AppComponent implements OnInit {
         this.horrorscope = h.fate;
         this.resultsArrived = true;
         this.loading = false;
-        this._onceADayService.setHorrorReadTime();
-        this._fateCacheService.setCachedFate(this.horrorscope);
+        this._onceADayService.setHorrorReadTime(sign);
+        this._fateCacheService.setCachedFate(this.horrorscope, sign);
       });
   }
 

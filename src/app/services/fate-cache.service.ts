@@ -4,14 +4,18 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class FateCacheService {
-  private fateKey: string = "fateKey";
+  private signFateKey: string = "Fate";
 
-  public getCachedFate(): string | null {
-    let fate = localStorage.getItem(this.fateKey);
+  public getCachedFate(sign: string): string | null {
+    let fate = localStorage.getItem(this._constructSignKey(sign));
     return fate;
   }
 
-  public setCachedFate(fate: string): void {
-    localStorage.setItem(this.fateKey, fate);
+  public setCachedFate(fate: string, sign: string): void {
+    localStorage.setItem(this._constructSignKey(sign), fate);
+  }
+
+  private _constructSignKey(sign: string): string {
+    return (sign += this.signFateKey);
   }
 }
