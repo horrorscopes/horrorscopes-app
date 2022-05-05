@@ -4,11 +4,11 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class OnceADayService {
-  private getTimestampKey: string = "getTimestampKey";
+  private signTimestampKey: string = "Timestamp";
   private postTimestampKey: string = "postTimestampKey";
 
-  public canReadNewHorror(): boolean {
-    let dateString = localStorage.getItem(this.getTimestampKey);
+  public canReadNewHorror(sign: string): boolean {
+    let dateString = localStorage.getItem(this._constructSignKey(sign));
     if (dateString == undefined || dateString == null) {
       return true;
     } else {
@@ -25,9 +25,9 @@ export class OnceADayService {
     }
   }
 
-  public setHorrorReadTime(): void {
+  public setHorrorReadTime(sign: string): void {
     let now = new Date().toISOString();
-    localStorage.setItem(this.getTimestampKey, now);
+    localStorage.setItem(this._constructSignKey(sign), now);
   }
 
   public setHorrorPostTime(): void {
@@ -44,5 +44,9 @@ export class OnceADayService {
       lastReadDate.getDate();
     let now = today.getFullYear() + today.getMonth() + today.getDate();
     return now != lastRead;
+  }
+
+  private _constructSignKey(sign: string): string {
+    return (sign += this.signTimestampKey);
   }
 }
