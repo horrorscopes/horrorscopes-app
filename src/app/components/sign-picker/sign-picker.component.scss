@@ -1,108 +1,109 @@
 
-.circle {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-image: url('/assets/images/circle.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    width: 300px;
-    height: 300px;
 
-    .capricorn {
-      cursor: pointer;
-      display: block;
-      margin-left: 140px;
-      margin-right: 160px;
-      margin-top: 30px;
-      position: absolute;
-    }
-    .aquarius {
-      cursor: pointer;
-      display: block;
-      margin-left: 190px;
-      margin-right: 110px;
-      margin-top: 50px;
-      position: absolute;
-    }
-    .pisces {
-      cursor: pointer;
-      display: block;
-      margin-left: 230px;
-      margin-right: 70px;
-      margin-top: 90px;
-      position: absolute;
-    }
-    .aries {
-      cursor: pointer;
-      display: block;
-      margin-left: 240px;
-      margin-right: 60px;
-      margin-top: 140px;
-      position: absolute;
-    }
-    .taurus {
-      cursor: pointer;
-      display: block;
-      margin-left: 230px;
-      margin-right: 70px;
-      margin-top: 180px;
-      position: absolute;
-    }
-    .gemini {
-      cursor: pointer;
-      display: block;
-      margin-left: 190px;
-      margin-right: 110px;
-      margin-top: 220px;
-      position: absolute;
-    }
-    .cancer {
-      cursor: pointer;
-      display: block;
-      margin-left: 140px;
-      margin-right: 160px;
-      margin-top: 240px;
-      position: absolute;
-    }
-    .leo {
-      cursor: pointer;
-      display: block;
-      margin-left: 85px;
-      margin-right: 215px;
-      margin-top: 220px;
-      position: absolute;
-    }
-    .virgo {
-      cursor: pointer;
-      display: block;
-      margin-left: 50px;
-      margin-right: 250px;
-      margin-top: 180px;
-      position: absolute;
-    }
-    .libra {
-      cursor: pointer;
-      display: block;
-      margin-left: 30px;
-      margin-right: 270px;
-      margin-top: 140px;
-      position: absolute;
-    }
-    .scorpio {
-      cursor: pointer;
-      display: block;
-      margin-left: 50px;
-      margin-right: 250px;
-      margin-top: 90px;
-      position: absolute;
-    }
-    .sagittarius {
-      cursor: pointer;
-      display: block;
-      margin-left: 85px;
-      margin-right: 215px;
-      margin-top: 50px;
-      position: absolute;
-    }
+.circle {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url("/assets/images/circle.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 300px;
+  height: 300px;
+
+  .capricorn {
+    cursor: pointer;
+    display: block;
+    margin-left: 140px;
+    margin-right: 160px;
+    margin-top: 30px;
+    position: absolute;
+  }
+  .aquarius {
+    cursor: pointer;
+    display: block;
+    margin-left: 190px;
+    margin-right: 110px;
+    margin-top: 50px;
+    position: absolute;
+  }
+  .pisces {
+    cursor: pointer;
+    display: block;
+    margin-left: 230px;
+    margin-right: 70px;
+    margin-top: 90px;
+    position: absolute;
+  }
+  .aries {
+    cursor: pointer;
+    display: block;
+    margin-left: 240px;
+    margin-right: 60px;
+    margin-top: 140px;
+    position: absolute;
+  }
+  .taurus {
+    cursor: pointer;
+    display: block;
+    margin-left: 230px;
+    margin-right: 70px;
+    margin-top: 180px;
+    position: absolute;
+  }
+  .gemini {
+    cursor: pointer;
+    display: block;
+    margin-left: 190px;
+    margin-right: 110px;
+    margin-top: 220px;
+    position: absolute;
+  }
+  .cancer {
+    cursor: pointer;
+    display: block;
+    margin-left: 140px;
+    margin-right: 160px;
+    margin-top: 240px;
+    position: absolute;
+  }
+  .leo {
+    cursor: pointer;
+    display: block;
+    margin-left: 85px;
+    margin-right: 215px;
+    margin-top: 220px;
+    position: absolute;
+  }
+  .virgo {
+    cursor: pointer;
+    display: block;
+    margin-left: 50px;
+    margin-right: 250px;
+    margin-top: 180px;
+    position: absolute;
+  }
+  .libra {
+    cursor: pointer;
+    display: block;
+    margin-left: 30px;
+    margin-right: 270px;
+    margin-top: 140px;
+    position: absolute;
+  }
+  .scorpio {
+    cursor: pointer;
+    display: block;
+    margin-left: 50px;
+    margin-right: 250px;
+    margin-top: 90px;
+    position: absolute;
+  }
+  .sagittarius {
+    cursor: pointer;
+    display: block;
+    margin-left: 85px;
+    margin-right: 215px;
+    margin-top: 50px;
+    position: absolute;
+  }
 }
