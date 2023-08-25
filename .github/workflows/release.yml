@@ -1,7 +1,10 @@
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - feature/android-12
+  # push:
+  #   tags:
+  #     - "*"
 
 env:
   NODE_VERSION: "14.x"
@@ -14,7 +17,7 @@ jobs:
       id-token: "write"
     steps:
       - name: "Checkout Github Action"
-        uses: actions/checkout@feature/adroid-12
+        uses: actions/checkout@master
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
