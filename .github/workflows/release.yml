@@ -37,7 +37,7 @@ jobs:
         run: npx cap copy
 
       - name: Build app bundle
-        run: cd android && gradle bundle
+        run: cd android && gradle bundle --warning-mode all
 
       - name: Extract Android signing key from env
         run: |
