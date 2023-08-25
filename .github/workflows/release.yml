@@ -1,7 +1,10 @@
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - feature/android-12
+  # push:
+  #   tags:
+  #     - "*"
 
 env:
   NODE_VERSION: "14.x"
@@ -34,7 +37,7 @@ jobs:
         run: npx cap copy
 
       - name: Build app bundle
-        run: cd android && gradle bundle
+        run: cd android && gradle bundle --warning-mode all
 
       - name: Extract Android signing key from env
         run: |

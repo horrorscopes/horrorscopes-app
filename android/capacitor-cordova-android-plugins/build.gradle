@@ -6,7 +6,7 @@ ext {
 buildscript {
     repositories {
         google()
-        jcenter()
+        // jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.1'
@@ -35,7 +35,7 @@ android {
 repositories {
     google()
     mavenCentral()
-    jcenter()
+    // jcenter()
     flatDir{
         dirs 'src/main/libs', 'libs'
     }
