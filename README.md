@@ -60,3 +60,4 @@ Run `keytool -genkey -v -keystore horrorscope.keystore -alias horroscope -keyalg
 ### Sign Java Archive Package
 
 Run `jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore horrorscope.keystore pathToAPKFile/app-release.aab horroscope` to sign the Java Archive Package.
+
